@@ -1,4 +1,4 @@
-package rafael_passarinho.programming_problems_2.exercise_5;
+package rafael_passarinho.programming_problems_2.exercise_7;
 
 import java.io.*;
 import java.net.*;
@@ -23,9 +23,10 @@ public class Client {
             //reading from user
             System.out.println("Idade: ");
             String age = sc.nextLine();
+            System.out.println("Tempo de serviço:");
+            String service_time = sc.nextLine();
             
-
-            String line = age;
+            String line = age + " " + service_time;
             //sending the user input to server
             out.println(line);
             out.flush();

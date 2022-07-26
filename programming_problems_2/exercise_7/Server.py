@@ -12,23 +12,21 @@ def handle_client(conn, addr):
 
     connected = True
     while connected:
-        age = conn.recv(SIZE).decode(FORMAT)
+        lst = conn.recv(SIZE).decode(FORMAT)
 
+        age, service_time = lst.split()
         age = int(age)
+        service_time = int(service_time)
+        answr = 'Não pode se aposentar.'
 
-        answer = 'O nadador se enquadra na categoria '
-        if age >= 5 and age <= 7:
-            answer += 'infantil A.'
-        elif age >=8 and age <= 10:
-            answer += 'infantil B.'
-        elif age >= 11 and age <= 13:
-            answer += 'juvenil A.'
-        elif age >= 14 and age <= 17:
-            answer += 'juvenil B.'
-        elif age >= 18:
-            answer += 'adulto.'
+        if age >= 60 and service_time >= 25:
+            answr = 'Pode se aposentar!'
+        elif service_time >= 30:
+            answr = 'Pode se aposentar!'
+        elif age >= 65:
+            answr = 'Pode se aposentar!'
         
-        conn.send(str(answer).encode(FORMAT))
+        conn.send(str(answr).encode(FORMAT))
         connected = False
         print(f'[{addr}] !DISCONNECT')
     

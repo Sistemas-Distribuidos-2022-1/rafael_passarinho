@@ -1,4 +1,4 @@
-package rafael_passarinho.programming_problems_2.exercise_5;
+package rafael_passarinho.programming_problems_2.exercise_8;
 
 import java.io.*;
 import java.net.*;
@@ -21,11 +21,10 @@ public class Client {
             Scanner sc = new Scanner(System.in);
 
             //reading from user
-            System.out.println("Idade: ");
-            String age = sc.nextLine();
+            System.out.println("Saldo médio: ");
+            String balance = sc.nextLine();
             
-
-            String line = age;
+            String line = balance;
             //sending the user input to server
             out.println(line);
             out.flush();

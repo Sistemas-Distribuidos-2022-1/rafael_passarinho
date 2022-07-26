@@ -12,21 +12,18 @@ def handle_client(conn, addr):
 
     connected = True
     while connected:
-        age = conn.recv(SIZE).decode(FORMAT)
+        balance = conn.recv(SIZE).decode(FORMAT)
 
-        age = int(age)
-
-        answer = 'O nadador se enquadra na categoria '
-        if age >= 5 and age <= 7:
-            answer += 'infantil A.'
-        elif age >=8 and age <= 10:
-            answer += 'infantil B.'
-        elif age >= 11 and age <= 13:
-            answer += 'juvenil A.'
-        elif age >= 14 and age <= 17:
-            answer += 'juvenil B.'
-        elif age >= 18:
-            answer += 'adulto.'
+        balance = int(balance)
+        credit = balance
+        if balance >= 201 and balance <= 400:
+            credit *= 0.2
+        elif balance >= 401 and balance <= 600:
+            credit *= 0.3
+        elif balance >= 601:
+            credit *= 0.4
+        
+        answer = f'Saldo médio: {balance} - Valor de crédito: {credit}'
         
         conn.send(str(answer).encode(FORMAT))
         connected = False

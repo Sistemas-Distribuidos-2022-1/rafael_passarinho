@@ -1,4 +1,4 @@
-package rafael_passarinho.programming_problems_2.exercise_5;
+package rafael_passarinho.programming_problems_2.exercise_6;
 
 import java.io.*;
 import java.net.*;
@@ -21,11 +21,17 @@ public class Client {
             Scanner sc = new Scanner(System.in);
 
             //reading from user
-            System.out.println("Idade: ");
-            String age = sc.nextLine();
+            System.out.println("Nome: ");
+            String name = sc.nextLine();
+            System.out.println("Nível:");
+            String level = sc.nextLine();
+            System.out.println("Salário bruto:");
+            String salary = sc.nextLine();
+            System.out.println("Número de dependentes:");
+            String dependents = sc.nextLine();
             
 
-            String line = age;
+            String line = name + " " + level + " " + salary + " " + dependents;
             //sending the user input to server
             out.println(line);
             out.flush();
