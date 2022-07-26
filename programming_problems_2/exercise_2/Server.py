@@ -15,20 +15,26 @@ def handle_client(conn, addr):
         msg = conn.recv(SIZE).decode(FORMAT)
 
         lst = msg.split()
-        lst[1] = float(lst[1])
+        sex = lst[1]
+        age = int(lst[2])
 
-        if lst[0] == 'operador':
-            lst[1] *= 1.2
+        if sex == 'masculino':
+            if age >= 18:
+                answer = f'{lst[0]} já atingiu a maior idade!\n'
+            else:
+                answer = f'{lst[0]} não atingiu a maior idade!\n'
         else:
-            lst[1] *= 1.18
+            if age >= 21:
+                answer = f'{lst[0]} já atingiu a maior idade!\n'
+            else:
+                answer = f'{lst[0]} não atingiu a maior idade!\n'
         
-        msg = str(lst[1])
-        conn.send(msg.encode(FORMAT))
+        conn.send(answer.encode(FORMAT))
         connected = False
         print(f'[{addr}] !DISCONNECT')
-
-    conn.close()
     
+    conn.close()
+
 def main():
     print('[STARTING] Server is starting...')
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -44,3 +50,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+

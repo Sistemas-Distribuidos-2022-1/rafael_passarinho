@@ -15,20 +15,19 @@ def handle_client(conn, addr):
         msg = conn.recv(SIZE).decode(FORMAT)
 
         lst = msg.split()
-        lst[1] = float(lst[1])
+        lst[0] = float(lst[0])
 
-        if lst[0] == 'operador':
-            lst[1] *= 1.2
+        if lst[1] == 'feminino':
+            answer = (62.1 * lst[0]) - 44.7
         else:
-            lst[1] *= 1.18
+            answer = (72.7 * lst[0]) - 58
         
-        msg = str(lst[1])
-        conn.send(msg.encode(FORMAT))
+        conn.send(str(answer).encode(FORMAT))
         connected = False
         print(f'[{addr}] !DISCONNECT')
-
-    conn.close()
     
+    conn.close()
+
 def main():
     print('[STARTING] Server is starting...')
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

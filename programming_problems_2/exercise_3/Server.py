@@ -15,20 +15,27 @@ def handle_client(conn, addr):
         msg = conn.recv(SIZE).decode(FORMAT)
 
         lst = msg.split()
-        lst[1] = float(lst[1])
-
-        if lst[0] == 'operador':
-            lst[1] *= 1.2
-        else:
-            lst[1] *= 1.18
+        for i in range(len(lst)):
+            lst[i] = float(lst[i])
         
-        msg = str(lst[1])
-        conn.send(msg.encode(FORMAT))
+        answer = ''
+        mean = (lst[0] + lst[1]) / 2
+        if mean >= 7.0:
+            answer = 'Aprovado!'
+        elif mean < 7 and mean > 3:
+            if (mean + lst[2]) / 2 >= 5.0:
+                answer = 'Aprovado!'
+            else:
+                answer = 'Reprovado!'
+        else:
+            answer = 'Reprovado!'
+        
+        conn.send(answer.encode(FORMAT))
         connected = False
         print(f'[{addr}] !DISCONNECT')
-
-    conn.close()
     
+    conn.close()
+
 def main():
     print('[STARTING] Server is starting...')
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
