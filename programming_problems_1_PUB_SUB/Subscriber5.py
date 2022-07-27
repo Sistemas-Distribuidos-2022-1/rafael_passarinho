@@ -1,4 +1,3 @@
-from unicodedata import category
 import zmq
 
 context = zmq.Context()
@@ -9,18 +8,18 @@ socket.subscribe('CATEGORIA')
 
 for _ in range(10): # 10 iterations
     topic = socket.recv_string()
-    lst = socket.recv_json()
+    age = socket.recv_json()
 
     categoria = ''
-    if lst[0] >= 5 and lst[0] <= 7:
-        categoria += 'infantil A.'
-    elif lst[0] >=8 and lst[0] <= 10:
-        categoria += 'infantil B.'
-    elif lst[0] >= 11 and lst[0] <= 13:
-        categoria += 'juvenil A.'
-    elif lst[0] >= 14 and lst[0] <= 17:
-        categoria += 'juvenil B.'
-    elif lst[0] >= 18:
-        categoria += 'adulto.'
-    answer = f'{topic} - O(A) nadador(a) tem {lst[0]} e se enquadra na categoria {categoria}!'
+    if age >= 5 and age <= 7:
+        categoria = 'infantil A.'
+    elif age >=8 and age <= 10:
+        categoria = 'infantil B.'
+    elif age >= 11 and age <= 13:
+        categoria = 'juvenil A.'
+    elif age >= 14 and age <= 17:
+        categoria = 'juvenil B.'
+    elif age >= 18:
+        categoria = 'adulto.'
+    answer = f'{topic} - O(A) nadador(a) tem {age} e se enquadra na categoria {categoria}'
     print(answer)

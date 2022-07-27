@@ -47,7 +47,7 @@ while(True):
 
     #topic:CATEGORIA
     time.sleep(1)
-    topic5 = (random.randint(4, 99))
+    topic5 = (random.randint(4,99))
 
     socket.send_string('CATEGORIA', flags=zmq.SNDMORE)
     socket.send_json(topic5)

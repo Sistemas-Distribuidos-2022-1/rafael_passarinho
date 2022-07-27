@@ -15,4 +15,4 @@ for _ in range(10): # 10 iterations
 	else:
 		lst[2] *= 1.18
 	
-	print(f'{topic} - {lst[0]} - salário reajustado: {lst[2]}')
+	print(f'{topic} - {lst[0]} - salário reajustado: {round(lst[2],3)}')
